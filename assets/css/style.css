@@ -1,0 +1,384 @@
+header{
+    position: fixed;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    background-color: rgb(235, 235, 235);
+    
+    /* ヘッダーを左右１００％に固定する */
+    width: 100vw;
+
+    padding: 0px 0px;
+}
+
+
+.header-left > a > img{
+    width: 12vw;
+    height: 84px;
+}
+
+.sns{
+    display: flex;
+    height: 84px;
+}
+
+@media screen and (max-width: 1018px) {
+    .active{
+        width: 136px;
+    }
+}
+
+@media screen and (max-width: 622px) {
+    .active{
+        width: 80px;
+    }
+}
+
+image{
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+/* ここからメイン */
+
+/* セクション１ */
+main{
+    background-color: rgb(235, 235, 235);
+}
+
+#moving-image{
+    width: 100%;
+    height: 760px;
+}
+
+/*========= ローディング画面のためのCSS ===============*/
+#splash {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #333;
+	z-index: 9999999;
+	text-align:center;
+	color:#fff;
+}
+
+#splash-logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/*========= 画面遷移のためのCSS ===============*/
+
+/*画面遷移アニメーション*/
+.splashbg{
+    display: none;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear .splashbg{
+    display: block;
+    content: "";
+    position:fixed;
+	z-index: 999;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+	left: 0;
+    transform: scaleY(0);
+    background-color: #333;/*伸びる背景色の設定*/
+	animation-name:PageAnime;
+	animation-duration:1.2s;
+	animation-timing-function:ease-in-out;
+	animation-fill-mode:forwards;
+}
+
+@keyframes PageAnime{
+	0% {
+		transform-origin:top;
+		transform:scaleY(0);
+	}
+	50% {
+		transform-origin:top;
+		transform:scaleY(1);
+	}
+	50.001% {
+		transform-origin:bottom;
+	}
+	100% {
+		transform-origin:bottom;
+		transform:scaleY(0);
+	}
+}
+
+/*画面遷移の後現れるコンテンツ設定*/
+#container{
+	opacity: 0;/*はじめは透過0に*/
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear #container{
+	animation-name:PageAnimeAppear;
+	animation-duration:1s;
+	animation-delay: 0.8s;
+	animation-fill-mode:forwards;
+	opacity: 0;
+}
+
+@keyframes PageAnimeAppear{
+	0% {
+	opacity: 0;
+	}
+	100% {
+	opacity: 1;
+}
+}
+
+
+/* セクション２ */
+.title{
+    font-size: 100px;
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+#toc_container{
+    margin: 30px 10px 100px 10px;
+    padding: 40px;
+    width: 400px;
+    font-size: 30px;
+    border: 1px solid black;
+    background-color: gainsboro;
+}
+
+/* セクション３ */
+.semititle{
+    padding: 80px 0px 16px 0px;
+    font-size: 50px;
+}
+
+.view1{
+    display: flex;
+}
+
+.view2{
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .view1{
+        flex-direction: column-reverse;
+    }
+
+    .view2{
+        flex-direction: column;
+    }
+}
+
+.phrase{
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .phrase{
+        width: 100vw;
+    }
+}
+
+.imgcontent {
+    width: 50%;
+    /* 最初は非表示にしておく */
+    opacity: 0;
+    /* 動きを滑らかに */
+    transition: all 4s; 
+}
+
+@media screen and (max-width: 768px) {
+    .imgcontent {
+        max-width: 100vw;
+        width: 100vw;
+    }
+}
+
+.title2 {
+    text-align: center;
+    font-size: 40px;
+    margin: 30px 0px;
+}
+
+.sentence{
+    font-size: 24px;
+    margin: 10px 20px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+}
+
+
+/* フェードインのアニメーション(section3~5) */
+
+.fadeIn {
+    opacity: 1;
+}
+
+/* 画面の幅を50%に保つ(section3~5) */
+@media only screen and (max-width: 600px) {
+    .imgcontent img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+  }
+
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    /* タブレット向けのスタイル */
+    .imgcontent img {
+        max-width: 100%;
+        width: 100vw;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    /* デスクトップ向けのスタイル */
+    .imgcontent img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+}
+/* セクション４ */
+/* セクション５ */
+#slideshow {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+  }
+  
+#slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  #slideshow img.active {
+    opacity: 1;
+  }
+
+
+.akihuyu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.aki{
+    width: 50vw;
+    margin: 10px 40px 10px 20px;
+}
+
+.huyu{
+    width: 50vw;
+    margin: 10px 40px 10px 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .akihuyu{
+        flex-direction: column;
+    }
+    .aki{
+        width: 92vw;
+        padding-right: 100px;
+    }
+    .huyu{
+        width: 92vw;
+        padding-right: 100px;
+    }
+}
+
+.season1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 48px;
+    margin-top: 20px;
+}
+
+.season2{
+    width: 100%;
+    font-size: 24px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+}
+
+
+.kousiki{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    font-size: 30px;
+    margin: 20px 70px 20px 0px;
+}
+
+/* セクション6 */
+.headline09{
+    font-size: 48px;
+    margin-top: 56px;
+    margin-left: 40px;
+}
+
+.headline10{
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    margin: 0 auto 0 -5px;
+    background-image: -webkit-linear-gradient(left, rgba(80, 80, 90, 1), rgba(80, 80, 90, .4), rgba(80, 80, 90, .05));
+    background-image: -moz-linear-gradient(left, rgba(80, 80, 90, 1), rgba(80, 80, 90, .4), rgba(80, 80, 90, .05));
+    background-image: -ms-linear-gradient(left, rgba(80, 80, 90, 1), rgba(80, 80, 90, .4), rgba(80, 80, 90, .05));
+    background-image: -o-linear-gradient(left, rgba(80, 80, 90, 1), rgba(80, 80, 90, .4), rgba(80, 80, 90, .05));
+    background-image: linear-gradient(left, rgba(80, 80, 90, 1), rgba(80, 80, 90, .4), rgba(80, 80, 90, .05));
+}
+
+
+.colspan_8{
+    /* border: red 2px solid; */
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {
+    .colspan_8{
+        /* border: blue 2px solid; */
+        flex-direction: column;
+    }
+}
+
+.address{
+    font-size: 32px;
+    margin-top: 40px;
+    line-height: 3;
+}
+
+/* ここからフッター */
+.footer{
+    background-color: midnightblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer > a > img{
+    width: 160px;
+    height: 48px;
+}
